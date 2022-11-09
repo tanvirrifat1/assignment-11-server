@@ -19,12 +19,22 @@ async function run() {
         const foodCollection = client.db('foodService').collection('foods')
         const reviewCollection = client.db('foodService').collection('review')
 
+        app.post("/getfood", async (req, res) => {
+            const addFood = req.body;
+            // console.log(result);
+            const result = await foodCollection.insertOne(addFood);
+            res.send(result);
+            console.log(result);
+        })
+
         app.get('/foods', async (req, res) => {
             const query = {};
             const cursor = foodCollection.find(query);
             const foods = await cursor.limit(3).toArray();
             res.send(foods);
         });
+
+
 
         app.get('/getfood', async (req, res) => {
             const query = {};
