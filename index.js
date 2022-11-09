@@ -24,7 +24,6 @@ async function run() {
             // console.log(result);
             const result = await foodCollection.insertOne(addFood);
             res.send(result);
-            console.log(result);
         })
 
         app.get('/foods', async (req, res) => {
